@@ -3,7 +3,9 @@ package com.oy.shappingcart.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.oy.shappingcart.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
