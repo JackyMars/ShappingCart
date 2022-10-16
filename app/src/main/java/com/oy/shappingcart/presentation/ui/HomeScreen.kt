@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -13,6 +12,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -20,8 +21,10 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.oy.shappingcart.domain.model.BannerImage
 import com.oy.shappingcart.presentation.components.Banner
+import com.oy.shappingcart.presentation.components.HomeTopBar
 import com.oy.shappingcart.presentation.components.VerticalPagerWithTabs
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,30 +55,55 @@ class HomeScreen :Fragment(){
                 val tabs:List<Pair<String, ImageVector>> = listOf(
                     "Home" to Icons.Default.Home,
                     "Shopping" to Icons.Default.ShoppingCart,
+                    "Settings" to  Icons.Default.Settings,
+                    "Home" to Icons.Default.Home,
+                    "Shopping" to Icons.Default.ShoppingCart,
+                    "Settings" to  Icons.Default.Settings,
+                    "Home" to Icons.Default.Home,
+                    "Shopping" to Icons.Default.ShoppingCart,
                     "Settings" to  Icons.Default.Settings
                 )
 
                 val isSelected = viewModel.isSelected.value
+                val scaffoldState = rememberScaffoldState()
+                val scope = rememberCoroutineScope()
 
                 Scaffold(
+                    scaffoldState = scaffoldState,
                     topBar = {
-                        Surface(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(260.dp)
+                        Column(modifier = Modifier.fillMaxWidth()
+                            .height(320.dp)) {
+//                            HomeTopBar(
+//                                navigationController = findNavController(),
+//                                scaffoldState = scaffoldState,
+//                                scope = scope
+//                            )
+                            Spacer(modifier = Modifier.padding(2.dp))
 
-                        ) {
-                            Banner(
-                                images = images,
-                                selectImage =  BannerImage("https://images.unsplash.com/photo-1665354248121-69d2fdb8864f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjcyOTd8MHwxfGFsbHwyfHx8fHx8Mnx8MTY2NTM4OTY2NA&ixlib=rb-1.2.1&q=80&w=400"),
-                                indicatorPadding = 30.dp,
-                                align = Alignment.BottomCenter
-                            )
+                            Surface(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(260.dp)
+
+                            ) {
+                                Banner(
+                                    images = images,
+                                    selectImage =  BannerImage("https://images.unsplash.com/photo-1665354248121-69d2fdb8864f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjcyOTd8MHwxfGFsbHwyfHx8fHx8Mnx8MTY2NTM4OTY2NA&ixlib=rb-1.2.1&q=80&w=400"),
+                                    indicatorPadding = 30.dp,
+                                    align = Alignment.BottomCenter
+                                )
 
 
+                            }
                         }
-                    }
+
+                    },
+                    drawerContent = {
+                        // Drawer content
+                    },
                 ){
+
+                    Spacer(modifier = Modifier.padding(8.dp))
                     VerticalPagerWithTabs(
                         isSelected = isSelected,
                         tabs = tabs,

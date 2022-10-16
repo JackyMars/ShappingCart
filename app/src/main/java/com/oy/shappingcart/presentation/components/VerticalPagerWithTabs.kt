@@ -63,11 +63,8 @@ fun VerticalPagerWithTabs(
 
             ) { page ->
             //to do
-            when(page){
-                0->PageItem(tabs[page].first)
-                1->PageItem(tabs[page].first)
-                2->PageItem(tabs[page].first)
-            }
+            PageItem(tabs[page].first)
+
         }
 
     }
@@ -172,9 +169,9 @@ fun Tab(
 //        border = BorderStroke(1.dp, Color.Black),
         elevation = 4.dp,
         backgroundColor = if(isSelected)
+            Color.LightGray
+        else
             Color.DarkGray.copy(alpha = 0.2f)
-        else Color.LightGray
-
     ) {
         Row(
             horizontalArrangement = Arrangement.Start,
