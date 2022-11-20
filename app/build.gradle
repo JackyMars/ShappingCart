@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
@@ -14,7 +15,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
-        versionName "1.4.2"
+        versionName "1.5.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -99,4 +100,10 @@ dependencies {
     def hilt_lifecycle_viewmodel = "1.0.0-alpha03"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle_viewmodel"
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle_viewmodel"
+
+    //Retrofit是專為API連線而生的第三方套件，與API連線的效率非常高，最特別的是其規範的REST框架讓程式高度解耦，好寫易維護
+    def retrofit = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+
 }
